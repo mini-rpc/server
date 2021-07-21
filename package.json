@@ -1,5 +1,5 @@
 {
-  "name": "mini-rpc",
+  "name": "@mini-rpc/server",
   "version": "0.0.1",
   "description": "simple but effective RPC framework. Both server and client.",
   "main": "index.js",
