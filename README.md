@@ -22,14 +22,13 @@ yarn add mini-rpc
 
 #### Config
 
-- `tsconfig.json`
+- `tsconfig.json` in server
 ```json
 {
   "compilerOptions": {
     "target": "ES2018",
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
-    // ...
   }
 }
 ```
@@ -87,10 +86,10 @@ class x {
 	}
 	// or declare the return type Promise
 	@Callable()
-  promiseAdd(a:number,b:number):Promise<number>{
+  	promiseAdd(a:number,b:number):Promise<number> {
 		return new Promise<number>((resolve)=>{
-			// ...
-    })
+		// ...
+   	})
   }
 }
 ```
