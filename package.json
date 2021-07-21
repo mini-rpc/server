@@ -1,15 +1,15 @@
 {
   "name": "mini-rpc",
   "version": "0.0.1",
-  "description": "",
+  "description": "simple but effective RPC framework. Both server and client.",
   "main": "index.js",
   "scripts": {
     "dev": "ts-node-dev --respawn src/index.ts",
     "test": "jest"
   },
   "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "author": "xiaoliu-heng",
+  "license": "MIT",
   "devDependencies": {
     "@babel/core": "^7.14.8",
     "@babel/plugin-proposal-decorators": "^7.14.5",
