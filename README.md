@@ -84,12 +84,14 @@ class x {
 	async add(a:number,b:number) {
 		// asynchronous code
 	}
+	
 	// or declare the return type Promise
+  
 	@Callable()
-  	promiseAdd(a:number,b:number):Promise<number> {
-		return new Promise<number>((resolve)=>{
-		// ...
-   	})
+  promiseAdd(a:number,b:number):Promise<number> {
+		  return new Promise<number>((resolve)=>{
+		  // ...
+   	  })
   }
 }
 ```
