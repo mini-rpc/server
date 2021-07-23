@@ -1,5 +1,5 @@
 # Mini-RPC
-simple but effective RPC framework. Both server and client.
+simple but effective RPC framework. Both server and [client](https://github.com/mini-rpc/client).
 
 ## Usage
 
@@ -12,12 +12,12 @@ simple but effective RPC framework. Both server and client.
 ### Get start
 
 #### Install
-```bash
-npm i mini-rpc
+```sh
+npm i @mini-rpc/server
 # or
-pnpm add mini-rpc
+pnpm add @mini-rpc/server
 # or
-yarn add mini-rpc
+yarn add @mini-rpc/server
 ```
 
 #### Config
@@ -33,10 +33,19 @@ yarn add mini-rpc
 }
 ```
 
+- install `reflect-metadata`
+```sh
+npm i reflect-metadata
+# or
+pnpm add reflect-metadata
+# or
+yarn add reflect-metadata
+```
+
 #### Server
 
 ```ts
-import {Service, Callable} from "mini-rpc";
+import { Service, Callable } from "@mini-rpc/server";
 
 @Service()
 class MyService {
@@ -57,7 +66,10 @@ server.listen(3000);
 ### Client
 
 ```ts
-import { RPCClient } from "mini-rpc";
+/*
+ * you need to install `@mini-rpc/client` on the client side
+ */
+import { RPCClient } from "@mini-rpc/client";
 
 const client = new RPCClient("ws://localhost:3000");
 client.connect();
@@ -77,6 +89,7 @@ client
 - the `@Callable` method can be asynchronous.
 
 ```ts
+
 class x {
 	//...
 
@@ -88,10 +101,11 @@ class x {
 	// or declare the return type Promise
   
 	@Callable()
-  promiseAdd(a:number,b:number):Promise<number> {
+  promiseAdd(a:number,b:number): Promise<number> {
 		  return new Promise<number>((resolve)=>{
 		  // ...
    	  })
   }
 }
+
 ```
