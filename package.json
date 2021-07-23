@@ -19,7 +19,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/mini-rpc/server.git"
+    "url": "git+https://github.com/mini-rpc/server.git"
   },
   "devDependencies": {
     "@babel/core": "^7.14.8",
