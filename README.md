@@ -42,6 +42,9 @@ pnpm add reflect-metadata
 yarn add reflect-metadata
 ```
 
+- import `reflect-metadata` on entry
+  (e.g: `index.ts`)
+
 #### Server
 
 ```ts
@@ -97,15 +100,13 @@ class x {
 	async add(a:number,b:number) {
 		// asynchronous code
 	}
-	
+
 	// or declare the return type Promise
-  
+
 	@Callable()
-  promiseAdd(a:number,b:number): Promise<number> {
-		  return new Promise<number>((resolve)=>{
-		  // ...
-   	  })
-  }
+	promiseAdd(a:number,b:number):Promise<number> {
+		return Promise<number>()
+	}
 }
 
 ```
