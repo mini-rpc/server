@@ -28,16 +28,9 @@ export class RPCServer extends SocketServer {
           return;
         }
 
-        const { fn, returnType } = metadata;
+        const { fn } = metadata;
         if (fn !== undefined && typeof fn === "function") {
-          if (
-            fn.constructor.name === "AsyncFunction" ||
-            returnType?.name === "Promise"
-          ) {
-            callback(await fn(...args));
-          } else {
-            callback(fn(...args));
-          }
+          callback(await fn(...args));
         }
       });
     });
