@@ -22,13 +22,20 @@ export class RPCServer extends SocketServer {
   private async call(funcName: string, args: any[], callback: Function) {
     const metadata = this.metadataStorage.getCallableMetadata(funcName);
     if (!metadata) {
-      callback(null, "not implemented");
+      callback(null, "server error: not implemented");
       return;
     }
 
-    const { fn } = metadata;
-    if (fn !== undefined && typeof fn === "function") {
-      callback(await fn(...(args || [])));
+    try {
+      const { fn } = metadata;
+      if (typeof fn === "function") {
+        const result = await fn(...(args || []));
+        callback(result);
+      } else {
+        callback(null, "server error: not a function");
+      }
+    } catch (e) {
+      callback(null, e);
     }
   }
 
