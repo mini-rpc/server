@@ -34,7 +34,7 @@ export class RPCServer extends SocketServer {
 
   private init() {
     this.on("connection", (socket) => {
-      socket.on("call", this.call);
+      socket.on("call", this.call.bind(this));
     });
   }
 
