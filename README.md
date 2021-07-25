@@ -78,7 +78,7 @@ const client = new RPCClient("ws://localhost:3000");
 client.connect();
 
 client
-  .call("add", [1,2,3])
+  .call("MyService.add", [1,2,3])
   .then((result) => {
     console.log(result); // 6
   })

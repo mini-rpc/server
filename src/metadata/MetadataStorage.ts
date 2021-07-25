@@ -1,5 +1,6 @@
 import { CallableMetadata } from "./definitions/callableMetadata";
 import { Container } from "typedi";
+import { ServiceMetadataKey } from "./definitions/serviceMetadata";
 
 export class MetadataStorage {
   private static instance: MetadataStorage;
@@ -14,7 +15,8 @@ export class MetadataStorage {
   }
 
   public collectCallableMetadata(metadata: CallableMetadata) {
-    this.callableMap.set(metadata.name, metadata);
+    const serviceName = metadata.target.name;
+    this.callableMap.set(`${serviceName}.${metadata.name}`, metadata);
   }
 
   public getCallableMetadata(name: string): CallableMetadata {
@@ -32,6 +34,9 @@ export class MetadataStorage {
         2. server.registerService([${metadata.target.name}]);
       `);
     }
+    const serviceName =
+      Reflect.getMetadata(ServiceMetadataKey, metadata.target) ||
+      metadata.target.name;
     const newMetadata = {
       ...metadata,
       bindThis: true,

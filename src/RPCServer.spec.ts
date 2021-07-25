@@ -27,4 +27,10 @@ describe("RPCServer", () => {
   test("Server should listen", () => {
     expect(server).not.toBeNull();
   });
+
+  test("call Test.randomNumber should return number", async () => {
+    const result = await server.test("Test.randomNumber", null);
+    expect(result).not.toBeNull();
+    expect(typeof result).toBe("number");
+  });
 });

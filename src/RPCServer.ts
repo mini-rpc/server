@@ -19,20 +19,28 @@ export class RPCServer extends SocketServer {
     Container.import(services);
   }
 
-  init() {
-    this.on("connection", (socket) => {
-      socket.on("call", async (funcName, args, callback) => {
-        const metadata = this.metadataStorage.getCallableMetadata(funcName);
-        if (!metadata) {
-          callback(null, "not implemented");
-          return;
-        }
+  private async call(funcName: string, args: any[], callback: Function) {
+    const metadata = this.metadataStorage.getCallableMetadata(funcName);
+    if (!metadata) {
+      callback(null, "not implemented");
+      return;
+    }
 
-        const { fn } = metadata;
-        if (fn !== undefined && typeof fn === "function") {
-          callback(await fn(...args));
-        }
-      });
+    const { fn } = metadata;
+    if (fn !== undefined && typeof fn === "function") {
+      callback(await fn(...(args || [])));
+    }
+  }
+
+  private init() {
+    this.on("connection", (socket) => {
+      socket.on("call", this.call);
+    });
+  }
+
+  public async test(funcName: string, args: any[]) {
+    return new Promise((resolve) => {
+      return this.call(funcName, args, resolve);
     });
   }
 }
